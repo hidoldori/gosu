@@ -18,7 +18,9 @@ output "aws_security_group_alb" {
 output "public-subnet-ids" {
    value = [for subnet in aws_subnet.public-subnet : subnet.id]
 }
-/*
+output "private-subnet-ids" {
+   value = [for subnet in aws_subnet.private-subnet : subnet.id]
+}
 output "public-subnet" {
   value = aws_subnet.public-subnet
 }
@@ -26,7 +28,6 @@ output "public-subnet" {
 output "private-subnet" {
   value = aws_subnet.private-subnet
 }
-*/
 /*
 output "s3_bucket_id" {
   value = module.s3.s3_bucket_id 
