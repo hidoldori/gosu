@@ -11,6 +11,10 @@ module "eks" {
   vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
   subnet_ids = data.terraform_remote_state.network.outputs.private-subnet-ids
 
+  // 직접 작업하고자 하는 경우
+  //vpc_id     = "vpc-0645cf53333ddb9f5"
+  //subnet_ids = var.subnet_ids #var 파일 list type
+
   cluster_endpoint_public_access  = false
   cluster_endpoint_private_access = true
 
@@ -51,6 +55,9 @@ module "eks" {
   eks_managed_node_group_defaults = {
     ami_type                               = "AL2_x86_64"
     subnet_ids                             = data.terraform_remote_state.network.outputs.private-subnet-ids
+
+    // 직접 참조하고자 하는 경우 
+    // subnet_ids                             = var.subnet_ids #var 파일 list type
     disk_size                              = 20
     instance_types                         = ["t3.small"]
     update_launch_template_default_version = true
