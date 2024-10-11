@@ -11,6 +11,9 @@ module "eks" {
   vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
   subnet_ids = data.terraform_remote_state.network.outputs.private-subnet-ids
 
+  //vpc_id     = "vpc-0645cf53333ddb9f5" // cicd 환경의 vpc
+  //subnet_ids = var.subnet_ids // variables.tf 참조할 것.
+
   // 직접 작업하고자 하는 경우
   //vpc_id     = "vpc-0645cf53333ddb9f5"
   //subnet_ids = var.subnet_ids #var 파일 list type
@@ -55,6 +58,7 @@ module "eks" {
   eks_managed_node_group_defaults = {
     ami_type                               = "AL2_x86_64"
     subnet_ids                             = data.terraform_remote_state.network.outputs.private-subnet-ids
+    //subnet_ids = var.subnet_ids // variables.tf 참조할 것.
 
     // 직접 참조하고자 하는 경우 
     // subnet_ids                             = var.subnet_ids #var 파일 list type
