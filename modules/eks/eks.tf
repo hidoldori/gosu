@@ -5,7 +5,7 @@ module "eks" {
   version = "~> 20.0"
 
 
-  cluster_name    = "gosu-eks-an2-prod"
+  cluster_name    = "gosu-eks-an2-prod-app"
   cluster_version = "1.30"
 
   vpc_id     = data.terraform_remote_state.network.outputs.vpc_id
@@ -69,7 +69,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     management-node = {
-      name            = "management-node"
+      name            = "management-node-app"
       use_name_prefix = false
       ami_type        = "AL2_x86_64"
       platform        = "linux"
